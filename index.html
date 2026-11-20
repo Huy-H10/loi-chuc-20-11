@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chúc mừng ngày Nhà giáo Việt Nam 20/11</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#ffe3ec;--bg2:#fff3d6;--card:#ffffffee;--text:#5a3a48;--accent:#ff5f8f;--accent2:#ffb347;--shadow:rgba(255,95,143,.25);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#3a1e2c;--bg2:#2c2438;--card:#46303dee;--text:#ffe9f0;--accent:#ff8fb1;--accent2:#ffc46b;--shadow:rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg1:#3a1e2c;--bg2:#2c2438;--card:#46303dee;--text:#ffe9f0;--accent:#ff8fb1;--accent2:#ffc46b;--shadow:rgba(0,0,0,.4)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'Quicksand',system-ui,sans-serif;color:var(--text);background:linear-gradient(160deg,var(--bg1),var(--bg2));display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+.fall{position:fixed;top:-40px;pointer-events:none;animation:fall linear infinite;z-index:0}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.wrap{position:relative;z-index:1;width:100%;max-width:480px;text-align:center}
+h1{font-family:'Dancing Script',cursive;font-size:clamp(2rem,9vw,3rem);margin:0 0 4px;color:var(--accent);line-height:1.15}
+.date{font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:18px}
+.env{font-size:96px;cursor:pointer;animation:bounce 1.4s ease-in-out infinite;display:inline-block;user-select:none}
+@keyframes bounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+.hint{font-weight:600;opacity:.8}
+.card{display:none;background:var(--card);border-radius:28px;padding:26px 22px;box-shadow:0 14px 40px var(--shadow);text-align:left;position:relative;animation:pop .7s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.6) translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.card p{margin:0 0 14px;font-size:1.05rem;line-height:1.7;opacity:0;transform:translateY(12px);transition:all .8s}
+.card p.show{opacity:1;transform:none}
+.sign{text-align:right;font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--accent);margin:0}
+.deco{position:absolute;font-size:30px;animation:sway 2.5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+.d1{top:-18px;left:-8px}.d2{top:-18px;right:-8px;animation-delay:.6s}
+.btn{margin-top:16px;border:0;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font:700 1rem 'Quicksand',sans-serif;padding:12px 26px;border-radius:999px;cursor:pointer;box-shadow:0 6px 18px var(--shadow);display:none}
+.btn:active{transform:scale(.95)}
+.heart{position:fixed;pointer-events:none;font-size:26px;z-index:5;animation:up 1.6s ease-out forwards}
+@keyframes up{to{transform:translateY(-220px) scale(1.6);opacity:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Chúc mừng 20/11 🌸</h1>
+  <div class="date">NGÀY NHÀ GIÁO VIỆT NAM</div>
+  <div id="open">
+    <div class="env" id="env">💌</div>
+    <div class="hint">Chạm vào thư để mở nhé, mẹ ơi!</div>
+  </div>
+  <div class="card" id="card">
+    <span class="deco d1">🌷</span><span class="deco d2">🌻</span>
+    <p>Nhân ngày Nhà giáo Việt Nam 20/11, con chúc mẹ luôn mạnh khỏe, vui vẻ và hạnh phúc. 🌼</p>
+    <p>Chúc mẹ luôn giữ được ngọn lửa yêu nghề, có thật nhiều niềm vui trong công việc và luôn được các thế hệ học trò yêu quý. 📚✨</p>
+    <p>Con mong mẹ lúc nào cũng bình an và gặp nhiều điều tốt đẹp trong cuộc sống. ❤️</p>
+    <p class="sign">Con yêu mẹ nhiều lắm! 💖</p>
+  </div>
+  <button class="btn" id="more">Gửi thêm tim cho mẹ 💗</button>
+</div>
+<script>
+var em=['🌸','💖','🌼','⭐','🌷','💕','🌻'];
+function drop(){
+  var s=document.createElement('span');s.className='fall';
+  s.textContent=em[Math.floor(Math.random()*em.length)];
+  s.style.left=Math.random()*100+'vw';
+  s.style.fontSize=(14+Math.random()*18)+'px';
+  s.style.animationDuration=(6+Math.random()*6)+'s';
+  s.style.opacity=.75;
+  document.body.appendChild(s);
+  setTimeout(function(){s.remove()},12500);
+}
+setInterval(drop,500);for(var i=0;i<10;i++)setTimeout(drop,i*150);
+function burst(x,y){
+  for(var i=0;i<8;i++){
+    var h=document.createElement('span');h.className='heart';h.textContent=em[i%em.length];
+    h.style.left=(x+(Math.random()*120-60))+'px';h.style.top=(y+(Math.random()*40-20))+'px';
+    h.style.animationDelay=(i*0.06)+'s';
+    document.body.appendChild(h);setTimeout(function(hh){hh.remove()},2000,h);
+  }
+}
+document.getElementById('env').addEventListener('click',function(e){
+  document.getElementById('open').style.display='none';
+  var c=document.getElementById('card');c.style.display='block';
+  document.getElementById('more').style.display='inline-block';
+  burst(e.clientX,e.clientY);
+  var ps=c.querySelectorAll('p');
+  ps.forEach(function(p,i){setTimeout(function(){p.classList.add('show')},500+i*1100)});
+});
+document.getElementById('more').addEventListener('click',function(e){
+  var r=e.target.getBoundingClientRect();burst(r.left+r.width/2,r.top);
+});
+</script>
+</body>
+</html>
